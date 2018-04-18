@@ -24,14 +24,14 @@ do
     curl -s "http://localhost:$1/version" -o /dev/nul
     curl -s "http://localhost:$1/api/echo?text=This is from a production user" -o /dev/nul
     curl -s "http://localhost:$1/api/invoke?url=http://www.dynatrace.com" -o /dev/nul
-    curl -s "http://localhost/api/invoke?url=http://blog.dynatrace.com" -o /dev/nul
+    curl -s "http://localhost:$1/api/invoke?url=http://blog.dynatrace.com" -o /dev/nul
   else
     sleep 5;
     startTime=`date +%s`
-    curl -s "http://localhost/" -H "x-dynatrace: NA=Test.Homepage;" -o /dev/nul
-    curl -s "http://localhost/version" -H "x-dynatrace: NA=Test.Version;" -o /dev/nul
-    curl -s "http://localhost/api/echo?text=This is from a testing script" -H "x-dynatrace: NA=Test.Echo;" -o /dev/nul
-    curl -s "http://localhost/api/invoke?url=http://www.dynatrace.com" -H "x-dynatrace: NA=Test.Invoke;" -o /dev/nul
+    curl -s "http://localhost:$1/" -H "x-dynatrace: NA=Test.Homepage;" -o /dev/nul
+    curl -s "http://localhost:$1/version" -H "x-dynatrace: NA=Test.Version;" -o /dev/nul
+    curl -s "http://localhost:$1/api/echo?text=This is from a testing script" -H "x-dynatrace: NA=Test.Echo;" -o /dev/nul
+    curl -s "http://localhost:$1/api/invoke?url=http://www.dynatrace.com" -H "x-dynatrace: NA=Test.Invoke;" -o /dev/nul
   fi
 
   currTime=`date +%s`
